@@ -1,0 +1,27 @@
+<div class="container">
+  <div *ngIf="loading" class="fw-700 fc-primary fs-34 lh-2">Loading...</div>
+  <div *ngIf="!loading" class="fw-700 fc-primary fs-34 lh-2">Top github users of <span class="f-upper">{{country}}</span></div>
+  <div *ngIf="!loading"  class="fc-primary fs-20 lh-2">Click to change the country</div>
+
+  <select
+    (change)="onSelectCountry($event)"
+    [(ngModel)]="country"
+  >
+    <option *ngFor="let item of countryList"
+            [ngValue]="item"
+            [selected]="item === country"
+    >{{item}}</option>
+  </select>
+
+  <div class="tab-list" >
+    <div class="tab-list-item" *ngFor="let item of userList; let i = index" (click)="viewDetails('user', item['login'])">
+      <div class="tab-list-item-thumb">
+        <img [src]="item['avatar_url']" alt="">
+      </div>
+      <div class="tab-list-item-info">
+        <h4 class="subtitle text-left">{{item['login']}}</h4>
+        <a target="_blank" href="{{item['html_url']}}">Github URL: {{item['html_url']}}</a>
+      </div>
+    </div>
+  </div>
+</div>

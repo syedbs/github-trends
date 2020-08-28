@@ -1,0 +1,38 @@
+<div class="container">
+  <div *ngIf="loading" class="fw-700 fc-primary fs-34 lh-2">Loading...</div>
+  <div *ngIf="!loading" class="fw-700 fc-primary fs-34 lh-2">{{isUser ? 'User ' : 'Repository '}} Details</div>
+  <div class="tab-list" >
+
+    <div class="tab-list-item" *ngIf="isUser">
+      <div class="tab-list-item-thumb">
+        <img [src]="data['avatar_url']" alt="">
+      </div>
+      <div class="tab-list-item-info">
+        <h4 class="title text-left">{{data['name']}}</h4>
+        <div class="fc-primary">
+          <p>Location: {{data['location']}}</p>
+          <p>Email: {{data['email']}}</p>
+          <p>Followers: {{data['followers']}}</p>
+          <p>Following: {{data['following']}}</p>
+          <p>Total Public Repos: {{data['public_repos']}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-list-item" *ngIf="!isUser">
+      <div class="tab-list-item-info" style="padding-top: 30px; padding-bottom: 30px">
+        <h4 class="title text-left">{{data['name']}}</h4>
+        <h4 class="subtitle text-left">{{data['description']}}</h4>
+        <div class="fc-primary">
+          <p>Stars: {{data['stargazers_count']}}</p>
+          <p>Forks: {{data['forks']}}</p>
+          <p>Subscribers : {{data['subscribers_count']}}</p>
+          <p>Watchers: {{data['watchers_count']}}</p>
+          <p>Language: {{data['language']}}</p>
+          <p>Url: {{data['html_url']}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

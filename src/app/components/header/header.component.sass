@@ -1,0 +1,26 @@
+.header
+  padding: 20px 0
+  display: flex
+  justify-content: space-between
+  align-items: center
+  @media (max-width: 800px)
+    flex-direction: column
+    padding: 20px
+  .brand
+    line-height: 38px
+    color: #262626
+    text-align: left
+    font-size: 24px
+    font-weight: 400
+    letter-spacing: 2px
+  nav
+    text-align: right
+    @media (max-width: 800px)
+      text-align: center
+    a
+      margin: 0 5px
+      @media (max-width: 800px)
+        display: block
+    a.active
+      font-weight: bold
+

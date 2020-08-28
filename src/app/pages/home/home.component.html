@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="search-section">
+    <h1 class="fc-primary fw-700 fs-24 lh-3 text-center">Search Repos from GitHub </h1>
+    <div class="searchbox">
+      <input type="text" placeholder="Search..." [(ngModel)]="searchKey" (keyup.enter)="search()">
+      <button (click)="search()" >Search</button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading fw-700 fc-primary fs-34 lh-1">loading...</div>
+  <div *ngIf="hasResults" class="loading fw-700 fc-primary fs-34 lh-2">Search Results</div>
+
+  <div class="tab-section" *ngIf="hasResults">
+    <div class="tab-head">
+      <div class="tab-head-item" [class.active]="tabId == 1" (click)="changeTab(1)">Users</div>
+      <div class="tab-head-item" [class.active]="tabId == 2" (click)="changeTab(2)">Repositories</div>
+    </div>
+    <div class="tab-body">
+    <!-- Users tab -->
+      <div class="tab-list" *ngIf="tabId == 1">
+        <div class="tab-list-item" *ngFor="let item of userList; let i = index" (click)="viewDetails('user', item['login'])">
+          <div class="tab-list-item-thumb">
+            <img [src]="item['avatar_url']" alt="">
+          </div>
+          <div class="tab-list-item-info">
+            <h4 class="subtitle text-left">{{item['login']}}</h4>
+            <a target="_blank" href="{{item['html_url']}}">Github URL: {{item['html_url']}}</a>
+          </div>
+        </div>
+        <div class="tab-pagination">
+          <div class="tab-pagination-info">Page - {{userPaginate.currentPage}}/{{userPaginate.totalPage}}</div>
+          <button class="tab-pagination-btn" [disabled]="userPaginate.currentPage <= 1" (click)="searchByUser(userPaginate.currentPage - 1)"><</button>
+          <button class="tab-pagination-btn" [disabled]="userPaginate.currentPage >= userPaginate.totalPage"  (click)="searchByUser(userPaginate.currentPage + 1)">></button>
+        </div>
+      </div>
+
+      <div class="tab-list" *ngIf="tabId == 2">
+        <div class="tab-list-item" *ngFor="let item of repoList; let i = index" (click)="viewDetails(item['owner']['login'], item['name'])">
+          <div class="tab-list-item-thumb">
+            <img [src]="item['owner']['avatar_url']" alt="">
+          </div>
+          <div class="tab-list-item-info">
+            <h4 class="subtitle text-left">{{item['name']}}</h4>
+            <div class="fc-primary fs-14">
+              <span style="margin-right: 5px"><b>Owner: </b>{{item['owner']['login']}}</span>
+              <span style="margin-right: 5px"><b>Stars: </b>{{item['stargazers_count']}}</span>
+              <span style="margin-right: 5px"><b>Forks</b>{{item['forks_count']}}</span>
+            </div>
+            <p class="fc-primary fs-15">{{item['description']}}</p>
+          </div>
+        </div>
+        <div class="tab-pagination">
+          <div class="tab-pagination-info">Page - {{repoPaginate.currentPage}}/{{repoPaginate.totalPage}}</div>
+          <button class="tab-pagination-btn" [disabled]="repoPaginate.currentPage <= 1" (click)="searchByRepo(repoPaginate.currentPage - 1)"><</button>
+          <button class="tab-pagination-btn" [disabled]="repoPaginate.currentPage >= repoPaginate.totalPage"  (click)="searchByRepo(repoPaginate.currentPage + 1)">></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

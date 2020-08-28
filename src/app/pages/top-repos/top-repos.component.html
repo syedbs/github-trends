@@ -1,0 +1,21 @@
+<div class="container">
+  <div *ngIf="loading" class="fw-700 fc-primary fs-34 lh-2">Loading...</div>
+  <div *ngIf="!loading" class="fw-700 fc-primary fs-34 lh-2">List of Top Repositories of Angular</div>
+  <div *ngIf="!loading"  class="fc-primary fs-20 lh-2">Click to see details</div>
+  <div class="tab-list" >
+    <div class="tab-list-item" *ngFor="let item of repoList; let i = index" (click)="viewDetails(item['owner']['login'], item['name'])">
+      <div class="tab-list-item-thumb">
+        <img [src]="item['owner']['avatar_url']" alt="">
+      </div>
+      <div class="tab-list-item-info">
+        <h4 class="subtitle text-left">{{item['name']}}</h4>
+        <div class="fc-primary fs-14">
+          <span style="margin-right: 5px"><b>Owner: </b>{{item['owner']['login']}}</span>
+          <span style="margin-right: 5px"><b>Stars: </b>{{item['stargazers_count']}}</span>
+          <span style="margin-right: 5px"><b>Forks</b>{{item['forks_count']}}</span>
+        </div>
+        <p class="fc-primary fs-15">{{item['description']}}</p>
+      </div>
+    </div>
+</div>
+</div>

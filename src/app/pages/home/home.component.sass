@@ -1,0 +1,94 @@
+@import "src/assets/sass/theme"
+
+.search-section
+  min-height: 40vh
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  .searchbox
+    width: 90%
+    height: 40px
+    max-width: 500px
+    border-radius: 50px
+    display: flex
+    overflow: hidden
+    box-sizing: border-box
+    input
+      flex: 1
+      border: none
+      outline: none
+      padding: 5px 25px
+      border-bottom-left-radius: 50px
+      border-top-left-radius: 50px
+      &:focus
+        border: 1px solid $primary
+    button
+      background: $primary
+      color: $white
+      padding: 5px 30px
+      border: none
+      outline: none
+      cursor: pointer
+      &:hover
+        background: $dark
+
+.tab-section
+  margin-bottom: 10px
+  .tab-head
+    display: flex
+    justify-content: start
+    align-items: center
+    border-bottom: 1px solid #cfb282
+    background: #f7eee0
+    .tab-head-item
+      padding: 10px
+      color: $primary
+      cursor: pointer
+      &:hover
+        background: #f1e0c9
+        color: #cfb282
+    .tab-head-item.active
+      background: antiquewhite
+      font-weight: bold
+      color: #cfb282
+  .tab-body
+    background: #00000008
+    .tab-list
+      .tab-list-item
+        display: flex
+        align-items: center
+        cursor: pointer
+        padding: 10px
+        &:hover
+          background: #00000008
+        .tab-list-item-thumb
+          height: 50px
+          width: 50px
+          border-radius: 100%
+          background: #0000000f
+          overflow: hidden
+          img
+            width: 100%
+            height: 100%
+            object-fit: cover
+        .tab-list-item-info
+          padding-left: 10px
+      .tab-pagination
+        background: #00000008
+        display: flex
+        justify-content: flex-end
+        align-items: center
+        color: $primary
+        .tab-pagination-info
+          padding: 10px
+        .tab-pagination-btn
+          cursor: pointer
+          background: #0000000f
+          color: $white
+          padding: 10px
+          &:hover
+           background: #00000008
+          &[disabled]
+            opacity: .8
+            cursor: not-allowed
